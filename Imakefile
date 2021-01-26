@@ -1,6 +1,6 @@
 XCOMM
-XCOMM Imakefile for tcsh 6.12
-XCOMM Marc Horowitz, MIT SIPB
+XCOMM Imakefile for RUsh
+XCOMM Abdon Morales, MRC 2021
 XCOMM
 
 #ifdef DestDir

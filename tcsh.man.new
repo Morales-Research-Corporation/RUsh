@@ -37,11 +37,11 @@
 .\" - Include the tilde when naming dot files. .Pa ~/.login , not .Pa .login
 .\"
 .\" - Refer to external commands in man page format, e.g., .Xr csh 1
-.\" However, tcsh is .Nm , because this is the tcsh man page (and
+.\" However, rush is .Nm , because this is the rush man page (and
 .\" see the next note anyway).
 .\"
-.\" - Say .Sq the shell , not .Sq tcsh ,
-.\" unless distinguishing between tcsh and csh.
+.\" - Say .Sq the shell , not .Sq rush ,
+.\" unless distinguishing between rush and csh.
 .\"
 .\" - Say .Sq shell variable / .Sq environment variable instead of
 .\" .Sq variable and .Sq builtin command / .Sq editor command instead of
@@ -64,11 +64,11 @@
 .\"   used here if you can. In particular, please don't use nroff commands
 .\"   which aren't already used herein.
 .\"
-.Dd Dec 4, 2019
-.Dt TCSH 1
+.Dd Jan 25, 2020
+.Dt RUSH 1
 .Os Astron 6.22.02
 .Sh NAME
-.Nm tcsh
+.Nm rush
 .Nd C shell with file name completion and command line editing
 .Sh SYNOPSIS
 .Nm
@@ -82,7 +82,7 @@
 .Nm
 is an enhanced but completely compatible version of the Berkeley
 UNIX C shell,
-.Xr csh 1 .
+.Xr rushsh 1 .
 It is a command language interpreter usable both as an interactive login
 shell and a shell script command processor.
 It includes a command-line editor (see
@@ -217,7 +217,7 @@ immediately before execution.
 Sets the
 .Va verbose
 shell variable even before executing
-.Pa ~/.tcshrc .
+.Pa ~/.rushrc .
 .It Fl X
 Is to
 .Fl x
@@ -270,9 +270,9 @@ It then executes commands from files in the user's
 .Pa home
 directory:
 first
-.Pa ~/.tcshrc (+)
+.Pa ~/.rushrc (+)
 or, if
-.Pa ~/.tcshrc
+.Pa ~/.rushrc
 is not found,
 .Pa ~/.cshrc ,
 then
@@ -293,7 +293,7 @@ before instead of after
 and
 .Pa ~/.login
 before instead of after
-.Pa ~/.tcshrc
+.Pa ~/.rushrc
 or
 .Pa ~/.cshrc
 and
@@ -306,7 +306,7 @@ shell variable. (+)
 Non-login shells read only
 .Pa /etc/csh.cshrc
 and
-.Pa ~/.tcshrc
+.Pa ~/.rushrc
 or
 .Pa ~/.cshrc
 on startup.
@@ -335,18 +335,18 @@ specific commands,
 or can have both a
 .Pa ~/.cshrc
 and a
-.Pa ~/.tcshrc
+.Pa ~/.rushrc
 which
 .Ic sources
 (see the builtin command)
 .Pa ~/.cshrc .
 The rest of this manual uses
-.Pa ~/.tcshrc
+.Pa ~/.rushrc
 to mean
-.Pa ~/.tcshrc
+.Pa ~/.rushrc
 or,
 if
-.Pa ~/.tcshrc
+.Pa ~/.rushrc
 is not found,
 .Pa ~/.cshrc .
 .Pp

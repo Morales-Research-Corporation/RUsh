@@ -1,15 +1,12 @@
-Tcsh is an enhanced but completely compatible version of the Berkeley
+RUSh is an enhanced but completely compatible version of the Berkeley
 C-Shell, with the addition of a command line editor, command and file
 name completion, listing, etc., and a bunch of small additions to the
 shell itself.
 
-Tcsh has been ported to most unix variants, and can be tinkered to work
+RUSh has been ported to most unix variants, and can be tinkered to work
 in unix systems that it has not ported yet. See the Ported file for
 a more complete list of ported systems and in the config directory for
 a configuration file that matches your system.
-
-Tcsh also runs under VMS/POSIX and OS/2+emx; the OS/2 port is not
-complete yet.
 
 Feel free to use it.  These changes to csh may only be included in
 a commercial product if the inclusion or exclusion does not change the
@@ -18,7 +15,7 @@ authors by giving credit where credit is due (in other words, don't
 claim that you wrote portions that you haven't, and don't delete the
 names of the authors from the source code or documentation).
 
-To install tcsh:
+To install RUSh:
 
 1)  Try running "./configure".  If that doesn't work, goto step 2.
     Run "./configure --help" to see possible options.  After running
@@ -68,7 +65,7 @@ To install tcsh:
     BACK TO ME.
 
 7)  You may want to adjust the DESTBIN and DESTMAN entries in Makefile.
-    These are the directories that tcsh, and the tcsh.1 man entry will
+    These are the directories that rush, and the rush.1 man entry will
     be placed in when you do a "make install" and "make install.man"
     respectively.  If you decide to install tcsh somewhere other
     than in /usr/local/bin/tcsh, you should #define _PATH_TCSHELL
@@ -76,13 +73,13 @@ To install tcsh:
 
 8)  make
 
-9)  Read the documentation while you are waiting.  The file tcsh.man
+9)  Read the documentation while you are waiting.  The file rush.man
     is in standard [nt]roff -man format. If you like, you can run the
     tcsh.man2html script (requires Perl) to generate an HTML version
     of the manpage which you can read with Mosaic, lynx or other HTML
     browser.
 
-10) Test tcsh by typing ./tcsh to see that it has compiled correctly.
+10) Test rush by typing ./rush to see that it has compiled correctly.
     The history command should give a time stamp on every entry.
     Typing normal characters should echo each exactly once.  Control-A
     should put the cursor at the beginning of the input line, but after
@@ -100,7 +97,7 @@ To install tcsh:
     passwd appears on the screen, you have lost /dev/tty. Otherwise
     everything is fine.
 
-11) Once satisfied that tcsh is working correctly, complete the
+11) Once satisfied that rush is working correctly, complete the
     installation by typing "make install" to install the binary, and
     "make install.man" to install the documentation. Don't forget to
     look at complete.tcsh for useful completions, dot.login for a sample

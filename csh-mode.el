@@ -1,11 +1,11 @@
-;; csh-mode.el --- csh (and tcsh) script editing mode for Emacs.
+;; csh-mode.el --- csh (and tcsh & RUsh) script editing mode for Emacs.
 ;;
-;; Version:    1.2
-;; Date:       April 2, 1999
-;; Maintainer: Dan Harkless <software@harkless.org>
+;; Version:    2.0
+;; Date:       February 22, 2021
+;; Maintainer: Abdon Morales Jr
 ;;
 ;; Description:
-;;   csh and tcsh script editing mode for Emacs.
+;;   csh, tcsh, and RUsh script editing mode for Emacs.
 ;; 
 ;; Installation:
 ;;   Put csh-mode.el in some directory in your load-path and load it.
@@ -42,11 +42,12 @@
 ;;  8 Aug 96  JR  (Last modification to ksh-mode 2.6.)
 ;;                [...]
 ;; 19 Jun 92  GE  (Conception of ksh-mode.)
+;; 22 Feb 22  AM  2.0: Added new stuff for csh and other shells
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(defconst csh-mode-version "1.2"
+(defconst csh-mode-version "2.0"
   "*Version number of this version of csh-mode")
 
 (defvar csh-mode-hook 

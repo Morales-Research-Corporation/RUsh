@@ -1,4 +1,4 @@
-# Optional: run from anywhere
+# Run the shell from anywhere
 You can run that binary anywhere from the command line
 
 To do this you need to add it to your path

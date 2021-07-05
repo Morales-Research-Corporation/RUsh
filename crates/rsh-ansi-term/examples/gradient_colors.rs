@@ -1,4 +1,4 @@
-use nu_ansi_term::{build_all_gradient_text, Color, Gradient, Rgb, TargetGround};
+use rsh_ansi_term::{build_all_gradient_text, Color, Gradient, Rgb, TargetGround};
 
 fn main() {
     let text = "lorem ipsum quia dolor sit amet, consectetur, adipisci velit";
@@ -32,6 +32,6 @@ fn main() {
 
     println!(
         "{}",
-        grad0.build("nushell is awesome", TargetGround::Foreground)
+        grad0.build("rshshell is awesome", TargetGround::Foreground)
     );
 }

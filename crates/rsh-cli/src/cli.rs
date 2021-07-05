@@ -1,29 +1,29 @@
 use crate::line_editor::configure_ctrl_c;
-use nu_ansi_term::Color;
-use nu_engine::{maybe_print_errors, run_block, script::run_script_standalone, EvaluationContext};
+use rsh_ansi_term::Color;
+use rsh_engine::{maybe_print_errors, run_block, script::run_script_standalone, EvaluationContext};
 
 #[allow(unused_imports)]
-pub(crate) use nu_engine::script::{process_script, LineResult};
+pub(crate) use rsh_engine::script::{process_script, LineResult};
 
 #[cfg(feature = "rustyline-support")]
 use crate::line_editor::{
     configure_rustyline_editor, convert_rustyline_result_to_string,
-    default_rustyline_editor_configuration, nu_line_editor_helper,
+    default_rustyline_editor_configuration, rsh_line_editor_helper,
 };
 
 #[allow(unused_imports)]
-use nu_data::config;
-use nu_source::{Tag, Text};
-use nu_stream::InputStream;
+use rsh_data::config;
+use rsh_source::{Tag, Text};
+use rsh_stream::InputStream;
 #[allow(unused_imports)]
 use std::sync::atomic::Ordering;
 
 #[cfg(feature = "rustyline-support")]
 use rustyline::{self, error::ReadlineError};
 
-use nu_errors::ShellError;
-use nu_parser::ParserScope;
-use nu_protocol::{hir::ExternalRedirection, ConfigPath, UntaggedValue, Value};
+use rsh_errors::ShellError;
+use rsh_parser::ParserScope;
+use rsh_protocol::{hir::ExternalRedirection, ConfigPath, UntaggedValue, Value};
 
 use log::trace;
 use std::error::Error;
@@ -35,14 +35,14 @@ pub fn search_paths() -> Vec<std::path::PathBuf> {
 
     let mut search_paths = Vec::new();
 
-    // Automatically add path `nu` is in as a search path
+    // Automatically add path `rsh` is in as a search path
     if let Ok(exe_path) = env::current_exe() {
         if let Some(exe_dir) = exe_path.parent() {
             search_paths.push(exe_dir.to_path_buf());
         }
     }
 
-    if let Ok(config) = nu_data::config::config(Tag::unknown()) {
+    if let Ok(config) = rsh_data::config::config(Tag::unknown()) {
         if let Some(Value {
             value: UntaggedValue::Table(pipelines),
             ..
@@ -75,7 +75,7 @@ pub fn run_script_file(
     let script = options
         .scripts
         .get(0)
-        .ok_or_else(|| ShellError::unexpected("Nu source code not available"))?;
+        .ok_or_else(|| ShellError::unexpected("rsh source code not available"))?;
 
     run_script_standalone(script.get_code().to_string(), options.stdin, &context, true)?;
 
@@ -111,11 +111,11 @@ pub fn cli(
     let mut rl = default_rustyline_editor_configuration();
     let history_path = if let Some(cfg) = &context.configs().lock().global_config {
         let _ = configure_rustyline_editor(&mut rl, cfg);
-        let helper = Some(nu_line_editor_helper(&context, cfg));
+        let helper = Some(rsh_line_editor_helper(&context, cfg));
         rl.set_helper(helper);
-        nu_data::config::path::history_path_or_default(cfg)
+        rsh_data::config::path::history_path_or_default(cfg)
     } else {
-        nu_data::config::path::default_history_path()
+        rsh_data::config::path::default_history_path()
     };
 
     // Don't load history if it's not necessary
@@ -148,13 +148,13 @@ pub fn cli(
     if !skip_welcome_message {
         println!(
             "Welcome to Nushell {} (type 'help' for more info)",
-            nu_command::commands::core_version()
+            rsh_command::commands::core_version()
         );
     }
 
     #[cfg(windows)]
     {
-        let _ = nu_ansi_term::enable_ansi_support();
+        let _ = rsh_ansi_term::enable_ansi_support();
     }
 
     let mut ctrlcbreak = false;
@@ -172,7 +172,7 @@ pub fn cli(
                 let prompt_line = prompt.as_string()?;
 
                 context.scope.enter_scope();
-                let (prompt_block, err) = nu_parser::parse(&prompt_line, 0, &context.scope);
+                let (prompt_block, err) = rsh_parser::parse(&prompt_line, 0, &context.scope);
 
                 if err.is_some() {
                     context.scope.exit_scope();
@@ -181,10 +181,10 @@ pub fn cli(
                         "{}{}{}{}{}{}> ",
                         Color::Green.bold().prefix().to_string(),
                         cwd,
-                        nu_ansi_term::ansi::RESET,
+                        rsh_ansi_term::ansi::RESET,
                         Color::Cyan.bold().prefix().to_string(),
                         current_branch(),
-                        nu_ansi_term::ansi::RESET
+                        rsh_ansi_term::ansi::RESET
                     )
                 } else {
                     let run_result = run_block(
@@ -228,10 +228,10 @@ pub fn cli(
                     "{}{}{}{}{}{}> ",
                     Color::Green.bold().prefix().to_string(),
                     cwd,
-                    nu_ansi_term::ansi::RESET,
+                    rsh_ansi_term::ansi::RESET,
                     Color::Cyan.bold().prefix().to_string(),
                     current_branch(),
-                    nu_ansi_term::ansi::RESET
+                    rsh_ansi_term::ansi::RESET
                 )
             }
         };
@@ -400,7 +400,7 @@ pub fn load_global_cfg(context: &EvaluationContext) {
 }
 
 pub fn register_plugins(context: &EvaluationContext) -> Result<(), ShellError> {
-    if let Ok(plugins) = nu_engine::plugin::build_plugin::scan(search_paths()) {
+    if let Ok(plugins) = rsh_engine::plugin::build_plugin::scan(search_paths()) {
         context.add_commands(
             plugins
                 .into_iter()
@@ -422,7 +422,7 @@ pub fn parse_and_eval(line: &str, ctx: &EvaluationContext) -> Result<String, She
 
     // TODO ensure the command whose examples we're testing is actually in the pipeline
     ctx.scope.enter_scope();
-    let (classified_block, err) = nu_parser::parse(line, 0, &ctx.scope);
+    let (classified_block, err) = rsh_parser::parse(line, 0, &ctx.scope);
     if let Some(err) = err {
         ctx.scope.exit_scope();
         return Err(err.into());

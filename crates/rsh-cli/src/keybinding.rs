@@ -155,14 +155,14 @@ fn convert_cmd(cmd: Cmd) -> rustyline::Cmd {
 fn convert_keybinding(keybinding: Keybinding) -> (rustyline::KeyEvent, rustyline::Cmd) {
     let rusty_modifiers = match keybinding.modifiers {
         Some(mods) => match mods {
-            NuModifiers::Ctrl => Some(Modifiers::CTRL),
-            NuModifiers::Alt => Some(Modifiers::ALT),
-            NuModifiers::Shift => Some(Modifiers::SHIFT),
-            NuModifiers::None => Some(Modifiers::NONE),
-            NuModifiers::CtrlShift => Some(Modifiers::CTRL_SHIFT),
-            NuModifiers::AltShift => Some(Modifiers::ALT_SHIFT),
-            NuModifiers::CtrlAlt => Some(Modifiers::CTRL_ALT),
-            NuModifiers::CtrlAltShift => Some(Modifiers::CTRL_ALT_SHIFT),
+            rshModifiers::Ctrl => Some(Modifiers::CTRL),
+            rshModifiers::Alt => Some(Modifiers::ALT),
+            rshModifiers::Shift => Some(Modifiers::SHIFT),
+            rshModifiers::None => Some(Modifiers::NONE),
+            rshModifiers::CtrlShift => Some(Modifiers::CTRL_SHIFT),
+            rshModifiers::AltShift => Some(Modifiers::ALT_SHIFT),
+            rshModifiers::CtrlAlt => Some(Modifiers::CTRL_ALT),
+            rshModifiers::CtrlAltShift => Some(Modifiers::CTRL_ALT_SHIFT),
             // _ => None,
         },
         None => None,
@@ -412,7 +412,7 @@ pub enum CharSearch {
 /// The set of modifier keys that were triggered along with a key press.
 #[derive(Serialize, Deserialize)]
 #[allow(non_camel_case_types)]
-pub enum NuModifiers {
+pub enum rshModifiers {
     /// Control modifier
     #[serde(alias = "CTRL")]
     Ctrl = 8,
@@ -445,7 +445,7 @@ pub type RepeatCount = usize;
 #[derive(Serialize, Deserialize)]
 pub struct Keybinding {
     key: KeyCode,
-    modifiers: Option<NuModifiers>,
+    modifiers: Option<rshModifiers>,
     binding: Cmd,
 }
 
@@ -453,8 +453,8 @@ type Keybindings = Vec<Keybinding>;
 
 pub(crate) fn load_keybindings(
     rl: &mut rustyline::Editor<crate::shell::Helper>,
-) -> Result<(), nu_errors::ShellError> {
-    let filename = nu_data::keybinding::keybinding_path()?;
+) -> Result<(), rsh_errors::ShellError> {
+    let filename = rsh_data::keybinding::keybinding_path()?;
     let contents = std::fs::read_to_string(filename);
 
     // Silently fail if there is no file there

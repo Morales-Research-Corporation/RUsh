@@ -55,7 +55,7 @@ impl Style {
         }
 
         // The foreground and background colors, if specified, need to be
-        // handled specially because the number codes are more complicated.
+        // handled specially because the rshmber codes are more complicated.
         // (see `write_background_code` and `write_foreground_code`)
         if let Some(bg) = self.background {
             if written_anything {
@@ -178,7 +178,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::{Style, Color::Blue};
+    /// use rsh_ansi_term::{Style, Color::Blue};
     ///
     /// let style = Style::default().bold();
     /// assert_eq!("\x1b[1m",
@@ -203,7 +203,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::{Style, Color::Green};
+    /// use rsh_ansi_term::{Style, Color::Green};
     ///
     /// let style = Style::default().bold();
     /// assert_eq!("\x1b[32m",
@@ -227,7 +227,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::{Style, Color::Green};
+    /// use rsh_ansi_term::{Style, Color::Green};
     ///
     /// let style = Style::default().bold();
     /// assert_eq!("\x1b[0m",
@@ -255,7 +255,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color::Green;
+    /// use rsh_ansi_term::Color::Green;
     ///
     /// assert_eq!("\x1b[0m",
     ///            Green.suffix().to_string());
@@ -273,7 +273,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color::{Red, Yellow};
+    /// use rsh_ansi_term::Color::{Red, Yellow};
     ///
     /// assert_eq!("\x1b[33m",
     ///            Red.infix(Yellow).to_string());
@@ -290,7 +290,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color::Purple;
+    /// use rsh_ansi_term::Color::Purple;
     ///
     /// assert_eq!("\x1b[0m",
     ///            Purple.suffix().to_string());

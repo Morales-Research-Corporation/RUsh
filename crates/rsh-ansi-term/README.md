@@ -29,7 +29,7 @@ To format a string, call the `paint` method on a `Style` or a `Color`, passing i
 For example, here’s how to get some red text:
 
 ```rust
-use nu_ansi_term::Color::Red;
+use rsh_ansi_term::Color::Red;
 
 println!("This is in red: {}", Red.paint("a red string"));
 ```
@@ -41,7 +41,7 @@ This allows strings to be printed with a minimum of `String` allocations being p
 If you _do_ want to get at the escape codes, then you can convert the `ANSIString` to a string as you would any other `Display` value:
 
 ```rust
-use nu_ansi_term::Color::Red;
+use rsh_ansi_term::Color::Red;
 
 let red_string = Red.paint("a red string").to_string();
 ```
@@ -49,7 +49,7 @@ let red_string = Red.paint("a red string").to_string();
 **Note for Windows 10 users:** On Windows 10, the application must enable ANSI support first:
 
 ```rust,ignore
-let enabled = nu_ansi_term::enable_ansi_support();
+let enabled = rsh_ansi_term::enable_ansi_support();
 ```
 
 ## Bold, underline, background, and other styles
@@ -60,7 +60,7 @@ Each method creates a new style that has that specific property set.
 For example:
 
 ```rust
-use nu_ansi_term::Style;
+use rsh_ansi_term::Style;
 
 println!("How about some {} and {}?",
          Style::new().bold().paint("bold"),
@@ -70,7 +70,7 @@ println!("How about some {} and {}?",
 For brevity, these methods have also been implemented for `Color` values, so you can give your styles a foreground color without having to begin with an empty `Style` value:
 
 ```rust
-use nu_ansi_term::Color::{Blue, Yellow};
+use rsh_ansi_term::Color::{Blue, Yellow};
 
 println!("Demonstrating {} and {}!",
          Blue.bold().paint("blue bold"),
@@ -86,8 +86,8 @@ In some cases, you may find it easier to change the foreground on an existing `S
 You can do this using the `fg` method:
 
 ```rust
-use nu_ansi_term::Style;
-use nu_ansi_term::Color::{Blue, Cyan, Yellow};
+use rsh_ansi_term::Style;
+use rsh_ansi_term::Color::{Blue, Cyan, Yellow};
 
 println!("Yellow on blue: {}", Style::new().on(Blue).fg(Yellow).paint("yow!"));
 println!("Also yellow on blue: {}", Cyan.on(Blue).fg(Yellow).paint("zow!"));
@@ -97,8 +97,8 @@ You can turn a `Color` into a `Style` with the `normal` method.
 This will produce the exact same `ANSIString` as if you just used the `paint` method on the `Color` directly, but it’s useful in certain cases: for example, you may have a method that returns `Styles`, and need to represent both the “red bold” and “red, but not bold” styles with values of the same type. The `Style` struct also has a `Default` implementation if you want to have a style with _nothing_ set.
 
 ```rust
-use nu_ansi_term::Style;
-use nu_ansi_term::Color::Red;
+use rsh_ansi_term::Style;
+use rsh_ansi_term::Color::Red;
 
 Red.normal().paint("yet another red string");
 Style::default().paint("a completely regular string");
@@ -106,11 +106,11 @@ Style::default().paint("a completely regular string");
 
 ## Extended colors
 
-You can access the extended range of 256 colors by using the `Color::Fixed` variant, which takes an argument of the color number to use.
+You can access the extended range of 256 colors by using the `Color::Fixed` variant, which takes an argument of the color rshmber to use.
 This can be included wherever you would use a `Color`:
 
 ```rust
-use nu_ansi_term::Color::Fixed;
+use rsh_ansi_term::Color::Fixed;
 
 Fixed(134).paint("A sort of light purple");
 Fixed(221).on(Fixed(124)).paint("Mustard in the ketchup");
@@ -122,7 +122,7 @@ There’s nothing stopping you from using these as `Fixed` colors instead, but t
 You can also access full 24-bit color by using the `Color::RGB` variant, which takes separate `u8` arguments for red, green, and blue:
 
 ```rust
-use nu_ansi_term::Color::RGB;
+use rsh_ansi_term::Color::RGB;
 
 RGB(70, 130, 180).paint("Steel blue");
 ```
@@ -135,11 +135,11 @@ For example, if you want to have some blue text followed by some blue bold text,
 This crate can optimise the ANSI codes that get printed in situations like this, making life easier for your terminal renderer.
 The `ANSIStrings` struct takes a slice of several `ANSIString` values, and will iterate over each of them, printing only the codes for the styles that need to be updated as part of its formatting routine.
 
-The following code snippet uses this to enclose a binary number displayed in red bold text inside some red, but not bold, brackets:
+The following code snippet uses this to enclose a binary rshmber displayed in red bold text inside some red, but not bold, brackets:
 
 ```rust
-use nu_ansi_term::Color::Red;
-use nu_ansi_term::{ANSIString, ANSIStrings};
+use rsh_ansi_term::Color::Red;
+use rsh_ansi_term::{ANSIString, ANSIStrings};
 
 let some_value = format!("{:b}", 42);
 let strings: &[ANSIString<'static>] = &[
@@ -164,7 +164,7 @@ This library also supports formatting `[u8]` byte strings; this supports applica
 This type does not implement `Display`, as it may not contain UTF-8, but it does provide a method `write_to` to write the result to any value that implements `Write`:
 
 ```rust
-use nu_ansi_term::Color::Green;
+use rsh_ansi_term::Color::Green;
 
 Green.paint("user data".as_bytes()).write_to(&mut std::io::stdout()).unwrap();
 ```
@@ -172,8 +172,8 @@ Green.paint("user data".as_bytes()).write_to(&mut std::io::stdout()).unwrap();
 Similarly, the type `ANSIByteStrings` supports writing a list of `ANSIByteString` values with minimal escape sequences:
 
 ```rust
-use nu_ansi_term::Color::Green;
-use nu_ansi_term::ANSIByteStrings;
+use rsh_ansi_term::Color::Green;
+use rsh_ansi_term::ANSIByteStrings;
 
 ANSIByteStrings(&[
     Green.paint("user data 1\n".as_bytes()),

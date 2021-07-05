@@ -29,13 +29,13 @@ sha2 = "0.9.3"
 sys-locale = "0.1.0"
 toml = "0.5.8"
 
-nu-errors = { version="3.0.0", path="../nu-errors" }
-nu-protocol = { version="3.0.0", path="../nu-protocol" }
-nu-source = { version="3.0.0", path="../nu-source" }
-nu-table = { version="3.0.0", path="../nu-table" }
-nu-test-support = { version="3.0.0", path="../nu-test-support" }
-nu-value-ext = { version="3.0.0", path="../nu-value-ext" }
-nu-ansi-term = { version="3.0.0", path="../nu-ansi-term" }
+rsh-errors = { version="3.0.0", path="../rsh-errors" }
+rsh-protocol = { version="3.0.0", path="../rsh-protocol" }
+rsh-source = { version="3.0.0", path="../rsh-source" }
+rsh-table = { version="3.0.0", path="../rsh-table" }
+rsh-test-support = { version="3.0.0", path="../rsh-test-support" }
+rsh-value-ext = { version="3.0.0", path="../rsh-value-ext" }
+rsh-ansi-term = { version="3.0.0", path="../rsh-ansi-term" }
 
 [dependencies.polars]
 version = "0.14.5"
@@ -46,4 +46,4 @@ features = ["strings", "checked_arithmetic"]
 users = "0.11.0"
 
 [features]
-dataframe = ["nu-protocol/dataframe", "polars"]
+dataframe = ["rsh-protocol/dataframe", "polars"]

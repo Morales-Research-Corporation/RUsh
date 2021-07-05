@@ -11,16 +11,16 @@ build = "build.rs"
 doctest = false
 
 [dependencies]
-rsh-completion = { version="3.0.0", path="../nu-completion" }
-rsh-command = { version="3.0.0", path="../nu-command" }
-rsh-data = { version="3.0.0", path="../nu-data" }
-rsh-engine = { version="3.0.0", path="../nu-engine" }
-rsh-errors = { version="3.0.0", path="../nu-errors" }
-rsh-parser = { version="3.0.0", path="../nu-parser" }
-rsh-protocol = { version="3.0.0", path="../nu-protocol" }
-rsh-source = { version="3.0.0", path="../nu-source" }
-rsh-stream = { version="3.0.0", path="../nu-stream" }
-rsh-ansi-term = { version="3.0.0", path="../nu-ansi-term" }
+rsh-completion = { version="3.0.0", path="../rsh-completion" }
+rsh-command = { version="3.0.0", path="../rsh-command" }
+rsh-data = { version="3.0.0", path="../rsh-data" }
+rsh-engine = { version="3.0.0", path="../rsh-engine" }
+rsh-errors = { version="3.0.0", path="../rsh-errors" }
+rsh-parser = { version="3.0.0", path="../rsh-parser" }
+rsh-protocol = { version="3.0.0", path="../rsh-protocol" }
+rsh-source = { version="3.0.0", path="../rsh-source" }
+rsh-stream = { version="3.0.0", path="../rsh-stream" }
+rsh-ansi-term = { version="3.0.0", path="../rsh-ansi-term" }
 
 indexmap ="1.6.1"
 log = "0.4.14"

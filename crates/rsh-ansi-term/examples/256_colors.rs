@@ -1,5 +1,5 @@
-extern crate nu_ansi_term;
-use nu_ansi_term::Color;
+extern crate rsh_ansi_term;
+use rsh_ansi_term::Color;
 
 // This example prints out the 256 colors.
 // They're arranged like this:

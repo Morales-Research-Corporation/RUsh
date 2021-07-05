@@ -4,7 +4,7 @@
 /// # Examples
 ///
 /// ```
-/// use nu_ansi_term::{Style, Color};
+/// use rsh_ansi_term::{Style, Color};
 ///
 /// let style = Style::new().bold().on(Color::Black);
 /// println!("{}", style.paint("Bold on black"));
@@ -52,7 +52,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new();
     /// println!("{}", style.paint("hi"));
@@ -66,7 +66,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().bold();
     /// println!("{}", style.paint("hey"));
@@ -83,7 +83,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().dimmed();
     /// println!("{}", style.paint("sup"));
@@ -100,7 +100,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().italic();
     /// println!("{}", style.paint("greetings"));
@@ -117,7 +117,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().underline();
     /// println!("{}", style.paint("salutations"));
@@ -133,7 +133,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().blink();
     /// println!("{}", style.paint("wazzup"));
@@ -150,7 +150,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().reverse();
     /// println!("{}", style.paint("aloha"));
@@ -167,7 +167,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().hidden();
     /// println!("{}", style.paint("ahoy"));
@@ -184,7 +184,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// let style = Style::new().strikethrough();
     /// println!("{}", style.paint("yo"));
@@ -201,7 +201,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::{Style, Color};
+    /// use rsh_ansi_term::{Style, Color};
     ///
     /// let style = Style::new().fg(Color::Yellow);
     /// println!("{}", style.paint("hi"));
@@ -218,7 +218,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::{Style, Color};
+    /// use rsh_ansi_term::{Style, Color};
     ///
     /// let style = Style::new().on(Color::Blue);
     /// println!("{}", style.paint("eyyyy"));
@@ -236,7 +236,7 @@ impl Style {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     ///
     /// assert_eq!(true,  Style::default().is_plain());
     /// assert_eq!(false, Style::default().bold().is_plain());
@@ -251,7 +251,7 @@ impl Default for Style {
     /// style returns the exact same text.
     ///
     /// ```
-    /// use nu_ansi_term::Style;
+    /// use rsh_ansi_term::Style;
     /// assert_eq!(None,  Style::default().foreground);
     /// assert_eq!(None,  Style::default().background);
     /// assert_eq!(false, Style::default().is_bold);
@@ -380,7 +380,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Red.normal();
     /// println!("{}", style.paint("hi"));
@@ -398,7 +398,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Green.bold();
     /// println!("{}", style.paint("hey"));
@@ -417,7 +417,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Yellow.dimmed();
     /// println!("{}", style.paint("sup"));
@@ -436,7 +436,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Blue.italic();
     /// println!("{}", style.paint("greetings"));
@@ -455,7 +455,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Purple.underline();
     /// println!("{}", style.paint("salutations"));
@@ -474,7 +474,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Cyan.blink();
     /// println!("{}", style.paint("wazzup"));
@@ -493,7 +493,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Black.reverse();
     /// println!("{}", style.paint("aloha"));
@@ -512,7 +512,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::White.hidden();
     /// println!("{}", style.paint("ahoy"));
@@ -531,7 +531,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Fixed(244).strikethrough();
     /// println!("{}", style.paint("yo"));
@@ -550,7 +550,7 @@ impl Color {
     /// # Examples
     ///
     /// ```
-    /// use nu_ansi_term::Color;
+    /// use rsh_ansi_term::Color;
     ///
     /// let style = Color::Rgb(31, 31, 31).on(Color::White);
     /// println!("{}", style.paint("eyyyy"));
@@ -569,7 +569,7 @@ impl From<Color> for Style {
     /// with the `From` trait.
     ///
     /// ```
-    /// use nu_ansi_term::{Style, Color};
+    /// use rsh_ansi_term::{Style, Color};
     /// let green_foreground = Style::default().fg(Color::Green);
     /// assert_eq!(green_foreground, Color::Green.normal());
     /// assert_eq!(green_foreground, Color::Green.into());

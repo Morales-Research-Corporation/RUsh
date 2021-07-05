@@ -3,15 +3,15 @@ mod options;
 mod options_parser;
 
 pub use options::{CliOptions, NuScript, Options};
-use options_parser::{NuParser, OptionsParser};
+use options_parser::{rshParser, OptionsParser};
 
-use nu_command::{commands::NuSignature as Nu, utils::test_bins as binaries};
-use nu_engine::{get_full_help, EvaluationContext};
-use nu_errors::ShellError;
-use nu_protocol::hir::{Call, Expression, SpannedExpression, Synthetic};
-use nu_protocol::{Primitive, UntaggedValue};
-use nu_source::{Span, Tag};
-use nu_stream::InputStream;
+use rsh_command::{commands::rshSignature as rsh, utils::test_bins as binaries};
+use rsh_engine::{get_full_help, EvaluationContext};
+use rsh_errors::ShellError;
+use rsh_protocol::hir::{Call, Expression, SpannedExpression, Synthetic};
+use rsh_protocol::{Primitive, UntaggedValue};
+use rsh_source::{Span, Tag};
+use rsh_stream::InputStream;
 
 pub struct App {
     parser: Box<dyn OptionsParser>,
@@ -24,9 +24,9 @@ impl App {
     }
 
     pub fn run(args: &[String]) -> Result<(), ShellError> {
-        let nu = Box::new(NuParser::new());
+        let rsh = Box::new(rshParser::new());
         let options = Options::default();
-        let ui = App::new(nu, options);
+        let ui = App::new(rsh, options);
 
         ui.main(args)
     }
@@ -39,15 +39,15 @@ impl App {
                 .context()
                 .host()
                 .lock()
-                .print_err(cause, &nu_source::Text::from(argv));
+                .print_err(cause, &rsh_source::Text::from(argv));
             std::process::exit(1);
         }
 
         if self.help() {
             let context = self.parser.context();
-            let stream = nu_stream::OutputStream::one(
-                UntaggedValue::string(get_full_help(&Nu, &context.scope))
-                    .into_value(nu_source::Tag::unknown()),
+            let stream = rsh_stream::OutputStream::one(
+                UntaggedValue::string(get_full_help(&rsh, &context.scope))
+                    .into_value(rsh_source::Tag::unknown()),
             );
 
             consume(context, stream)?;
@@ -58,9 +58,9 @@ impl App {
         if self.version() {
             let context = self.parser.context();
 
-            let stream = nu_command::commands::version(nu_engine::CommandArgs {
+            let stream = rsh_command::commands::version(rsh_engine::CommandArgs {
                 context: context.clone(),
-                call_info: nu_engine::UnevaluatedCallInfo {
+                call_info: rsh_engine::UnevaluatedCallInfo {
                     args: Call::new(
                         Box::new(SpannedExpression::new(
                             Expression::Synthetic(Synthetic::String("version".to_string())),
@@ -130,7 +130,7 @@ impl App {
 
         if let Some(commands) = self.commands() {
             let commands = commands?;
-            let script = NuScript::code(&commands)?;
+            let script = rshScript::code(&commands)?;
             opts.scripts = vec![script];
             let context = crate::create_default_context(false)?;
             return crate::run_script_file(context, opts);
@@ -142,7 +142,7 @@ impl App {
                 let script_name = script?;
                 let path = std::ffi::OsString::from(&script_name);
 
-                match NuScript::source_file(path.as_os_str()) {
+                match rshScript::source_file(path.as_os_str()) {
                     Ok(file) => source_files.push(file),
                     Err(_) => {
                         eprintln!("File not found: {}", script_name);
@@ -175,7 +175,7 @@ impl App {
 
         #[cfg(not(feature = "rustyline-support"))]
         {
-            println!("Nushell needs the 'rustyline-support' feature for CLI support");
+            println!("rshshell needs the 'rustyline-support' feature for CLI support");
         }
 
         Ok(())
@@ -346,7 +346,7 @@ mod tests {
     use super::*;
 
     fn cli_app() -> App {
-        let parser = Box::new(NuParser::new());
+        let parser = Box::new(rshParser::new());
         let options = Options::default();
 
         App::new(parser, options)
@@ -356,7 +356,7 @@ mod tests {
     fn default_options() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu")?;
+        ui.parse("rsh")?;
         assert!(!ui.version());
         assert!(!ui.help());
         assert!(!ui.takes_stdin());
@@ -376,7 +376,7 @@ mod tests {
     fn reports_errors_on_unsupported_flags() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        assert!(ui.parse("nu --coonfig-file /path/to/config.toml").is_err());
+        assert!(ui.parse("rsh --coonfig-file /path/to/config.toml").is_err());
         assert!(ui.config().is_none());
         Ok(())
     }
@@ -384,7 +384,7 @@ mod tests {
     #[test]
     fn configures_debug_trace_level_with_filters() -> Result<(), ShellError> {
         let ui = cli_app();
-        ui.parse("nu --develop=cli,parser")?;
+        ui.parse("rsh --develop=cli,parser")?;
         assert_eq!(ui.develop().unwrap()[0], Ok("cli".to_string()));
         assert_eq!(ui.develop().unwrap()[1], Ok("parser".to_string()));
         Ok(())
@@ -393,7 +393,7 @@ mod tests {
     #[test]
     fn configures_debug_level_with_filters() -> Result<(), ShellError> {
         let ui = cli_app();
-        ui.parse("nu --debug=cli,run")?;
+        ui.parse("rsh --debug=cli,run")?;
         assert_eq!(ui.debug().unwrap()[0], Ok("cli".to_string()));
         assert_eq!(ui.debug().unwrap()[1], Ok("run".to_string()));
         Ok(())
@@ -403,18 +403,18 @@ mod tests {
     fn can_use_loglevels() -> Result<(), ShellError> {
         for level in &["error", "warn", "info", "debug", "trace"] {
             let ui = cli_app();
-            let args = format!("nu --loglevel={}", *level);
+            let args = format!("rsh --loglevel={}", *level);
             ui.parse(&args)?;
             assert_eq!(ui.loglevel().unwrap(), Ok(level.to_string()));
 
             let ui = cli_app();
-            let args = format!("nu -l {}", *level);
+            let args = format!("rsh -l {}", *level);
             ui.parse(&args)?;
             assert_eq!(ui.loglevel().unwrap(), Ok(level.to_string()));
         }
 
         let ui = cli_app();
-        ui.parse("nu --loglevel=nada")?;
+        ui.parse("rsh --loglevel=nada")?;
         assert_eq!(
             ui.loglevel().unwrap(),
             Err(ShellError::untagged_runtime_error("nada is not supported."))
@@ -424,11 +424,11 @@ mod tests {
     }
 
     #[test]
-    fn can_be_passed_nu_scripts() -> Result<(), ShellError> {
+    fn can_be_passed_rsh_scripts() -> Result<(), ShellError> {
         let ui = cli_app();
-        ui.parse("nu code.nu bootstrap.nu")?;
-        assert_eq!(ui.scripts().unwrap()[0], Ok("code.nu".into()));
-        assert_eq!(ui.scripts().unwrap()[1], Ok("bootstrap.nu".into()));
+        ui.parse("rsh code.rsh bootstrap.rsh")?;
+        assert_eq!(ui.scripts().unwrap()[0], Ok("code.rsh".into()));
+        assert_eq!(ui.scripts().unwrap()[1], Ok("bootstrap.rsh".into()));
         Ok(())
     }
 
@@ -438,13 +438,13 @@ mod tests {
             "echo_env", "cococo", "iecho", "fail", "nonu", "chop", "repeater", "meow",
         ] {
             let ui = cli_app();
-            let args = format!("nu --testbin={}", *binarie_name);
+            let args = format!("rsh --testbin={}", *binarie_name);
             ui.parse(&args)?;
             assert_eq!(ui.testbin().unwrap(), Ok(binarie_name.to_string()));
         }
 
         let ui = cli_app();
-        ui.parse("nu --testbin=andres")?;
+        ui.parse("rsh --testbin=andres")?;
         assert_eq!(
             ui.testbin().unwrap(),
             Err(ShellError::untagged_runtime_error(
@@ -459,7 +459,7 @@ mod tests {
     fn has_version() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu --version")?;
+        ui.parse("rsh --version")?;
         assert!(ui.version());
         Ok(())
     }
@@ -468,7 +468,7 @@ mod tests {
     fn has_help() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu --help")?;
+        ui.parse("rsh --help")?;
         assert!(ui.help());
         Ok(())
     }
@@ -477,7 +477,7 @@ mod tests {
     fn can_take_stdin() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu --stdin")?;
+        ui.parse("rsh --stdin")?;
         assert!(ui.takes_stdin());
         Ok(())
     }
@@ -486,7 +486,7 @@ mod tests {
     fn can_opt_to_avoid_saving_history() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu --no-history")?;
+        ui.parse("rsh --no-history")?;
         assert!(!ui.save_history());
         Ok(())
     }
@@ -495,7 +495,7 @@ mod tests {
     fn can_opt_to_skip_plugins() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu --skip-plugins")?;
+        ui.parse("rsh --skip-plugins")?;
         assert!(ui.skip_plugins());
         Ok(())
     }
@@ -504,12 +504,12 @@ mod tests {
     fn understands_commands_need_to_be_run() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu -c \"ls | get name\"")?;
+        ui.parse("rsh -c \"ls | get name\"")?;
         assert_eq!(ui.commands().unwrap(), Ok(String::from("ls | get name")));
 
         let ui = cli_app();
 
-        ui.parse("nu -c \"echo 'hola'\"")?;
+        ui.parse("rsh -c \"echo 'hola'\"")?;
         assert_eq!(ui.commands().unwrap(), Ok(String::from("echo 'hola'")));
         Ok(())
     }
@@ -518,7 +518,7 @@ mod tests {
     fn knows_custom_configurations() -> Result<(), ShellError> {
         let ui = cli_app();
 
-        ui.parse("nu --config-file /path/to/config.toml")?;
+        ui.parse("rsh --config-file /path/to/config.toml")?;
         assert_eq!(ui.config().unwrap(), String::from("/path/to/config.toml"));
         Ok(())
     }

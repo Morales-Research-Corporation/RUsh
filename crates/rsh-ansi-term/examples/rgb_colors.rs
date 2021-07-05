@@ -1,5 +1,5 @@
-extern crate nu_ansi_term;
-use nu_ansi_term::{Color, Style};
+extern crate rsh_ansi_term;
+use rsh_ansi_term::{Color, Style};
 
 // This example prints out a color gradient in a grid by calculating each
 // character’s red, green, and blue components, and using 24-bit color codes

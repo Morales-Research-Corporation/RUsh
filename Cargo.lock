@@ -3264,44 +3264,44 @@ dependencies = [
  "futures 0.3.15",
  "hamcrest2",
  "itertools",
- "nu-cli",
- "nu-command",
- "nu-completion",
- "nu-data",
- "nu-engine",
- "nu-errors",
- "nu-parser",
- "nu-path",
- "nu-plugin",
- "nu-protocol",
- "nu-source",
- "nu-test-support",
- "nu-value-ext",
- "nu_plugin_binaryview",
- "nu_plugin_chart",
- "nu_plugin_fetch",
- "nu_plugin_from_bson",
- "nu_plugin_from_sqlite",
- "nu_plugin_inc",
- "nu_plugin_match",
- "nu_plugin_post",
- "nu_plugin_ps",
- "nu_plugin_query_json",
- "nu_plugin_s3",
- "nu_plugin_selector",
- "nu_plugin_start",
- "nu_plugin_sys",
- "nu_plugin_textview",
- "nu_plugin_to_bson",
- "nu_plugin_to_sqlite",
- "nu_plugin_tree",
- "nu_plugin_xpath",
+ "rsh-cli",
+ "rsh-command",
+ "rsh-completion",
+ "rsh-data",
+ "rsh-engine",
+ "rsh-errors",
+ "rsh-parser",
+ "rsh-path",
+ "rsh-plugin",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-test-support",
+ "rsh-value-ext",
+ "rsh_plugin_binaryview",
+ "rsh_plugin_chart",
+ "rsh_plugin_fetch",
+ "rsh_plugin_from_bson",
+ "rsh_plugin_from_sqlite",
+ "rsh_plugin_inc",
+ "rsh_plugin_match",
+ "rsh_plugin_post",
+ "rsh_plugin_ps",
+ "rsh_plugin_query_json",
+ "rsh_plugin_s3",
+ "rsh_plugin_selector",
+ "rsh_plugin_start",
+ "rsh_plugin_sys",
+ "rsh_plugin_textview",
+ "rsh_plugin_to_bson",
+ "rsh_plugin_to_sqlite",
+ "rsh_plugin_tree",
+ "rsh_plugin_xpath",
  "rstest",
  "serial_test",
 ]
 
 [[package]]
-name = "nu-ansi-term"
+name = "rsh-ansi-term"
 version = "3.0.0"
 dependencies = [
  "doc-comment",
@@ -3314,22 +3314,22 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-cli"
+name = "rsh-cli"
 version = "3.0.0"
 dependencies = [
  "ctrlc",
  "indexmap",
  "log 0.4.14",
- "nu-ansi-term",
- "nu-command",
- "nu-completion",
- "nu-data",
- "nu-engine",
- "nu-errors",
- "nu-parser",
- "nu-protocol",
- "nu-source",
- "nu-stream",
+ "rsh-ansi-term",
+ "rsh-command",
+ "rsh-completion",
+ "rsh-data",
+ "rsh-engine",
+ "rsh-errors",
+ "rsh-parser",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-stream",
  "pretty_env_logger",
  "rustyline",
  "serde 1.0.126",
@@ -3339,7 +3339,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-command"
+name = "rsh-command"
 version = "3.0.0"
 dependencies = [
  "Inflector",
@@ -3377,21 +3377,21 @@ dependencies = [
  "md5 0.7.0",
  "meval",
  "minus",
- "nu-ansi-term",
- "nu-data",
- "nu-engine",
- "nu-errors",
- "nu-json",
- "nu-parser",
- "nu-path",
- "nu-plugin",
- "nu-pretty-hex",
- "nu-protocol",
- "nu-source",
- "nu-stream",
- "nu-table",
- "nu-test-support",
- "nu-value-ext",
+ "rsh-ansi-term",
+ "rsh-data",
+ "rsh-engine",
+ "rsh-errors",
+ "rsh-json",
+ "rsh-parser",
+ "rsh-path",
+ "rsh-plugin",
+ "rsh-pretty-hex",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-stream",
+ "rsh-table",
+ "rsh-test-support",
+ "rsh-value-ext",
  "num-bigint 0.3.2",
  "num-format",
  "num-traits 0.2.14",
@@ -3438,25 +3438,25 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-completion"
+name = "rsh-completion"
 version = "3.0.0"
 dependencies = [
  "dirs-next",
  "indexmap",
  "is_executable",
- "nu-data",
- "nu-engine",
- "nu-errors",
- "nu-parser",
- "nu-path",
- "nu-protocol",
- "nu-source",
- "nu-test-support",
+ "rsh-data",
+ "rsh-engine",
+ "rsh-errors",
+ "rsh-parser",
+ "rsh-path",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-test-support",
  "parking_lot 0.11.1",
 ]
 
 [[package]]
-name = "nu-data"
+name = "rsh-data"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
@@ -3469,13 +3469,13 @@ dependencies = [
  "getset",
  "indexmap",
  "log 0.4.14",
- "nu-ansi-term",
- "nu-errors",
- "nu-protocol",
- "nu-source",
- "nu-table",
- "nu-test-support",
- "nu-value-ext",
+ "rsh-ansi-term",
+ "rsh-errors",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-table",
+ "rsh-test-support",
+ "rsh-value-ext",
  "num-bigint 0.3.2",
  "num-format",
  "num-traits 0.2.14",
@@ -3489,7 +3489,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-engine"
+name = "rsh-engine"
 version = "3.0.0"
 dependencies = [
  "ansi_term 0.12.1",
@@ -3516,17 +3516,17 @@ dependencies = [
  "itertools",
  "lazy_static 1.4.0",
  "log 0.4.14",
- "nu-ansi-term",
- "nu-data",
- "nu-errors",
- "nu-parser",
- "nu-path",
- "nu-plugin",
- "nu-protocol",
- "nu-source",
- "nu-stream",
- "nu-test-support",
- "nu-value-ext",
+ "rsh-ansi-term",
+ "rsh-data",
+ "rsh-errors",
+ "rsh-parser",
+ "rsh-path",
+ "rsh-plugin",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-stream",
+ "rsh-test-support",
+ "rsh-value-ext",
  "num-bigint 0.3.2",
  "num-format",
  "num-traits 0.2.14",
@@ -3544,7 +3544,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-errors"
+name = "rsh-errors"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
@@ -3552,8 +3552,8 @@ dependencies = [
  "derive-new",
  "getset",
  "glob",
- "nu-ansi-term",
- "nu-source",
+ "rsh-ansi-term",
+ "rsh-source",
  "num-bigint 0.3.2",
  "num-traits 0.2.14",
  "serde 1.0.126",
@@ -3563,13 +3563,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-json"
+name = "rsh-json"
 version = "3.0.0"
 dependencies = [
  "dunce",
  "lazy_static 1.4.0",
  "linked-hash-map 0.5.4",
- "nu-test-support",
+ "rsh-test-support",
  "num-traits 0.2.14",
  "regex 1.5.4",
  "serde 1.0.126",
@@ -3577,7 +3577,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-parser"
+name = "rsh-parser"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
@@ -3588,11 +3588,11 @@ dependencies = [
  "indexmap",
  "itertools",
  "log 0.4.14",
- "nu-errors",
- "nu-path",
- "nu-protocol",
- "nu-source",
- "nu-test-support",
+ "rsh-errors",
+ "rsh-path",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-test-support",
  "num-bigint 0.3.2",
  "num-traits 0.2.14",
  "serde 1.0.126",
@@ -3600,7 +3600,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-path"
+name = "rsh-path"
 version = "3.0.0"
 dependencies = [
  "dirs-next",
@@ -3608,32 +3608,32 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-plugin"
+name = "rsh-plugin"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
  "indexmap",
- "nu-errors",
- "nu-protocol",
- "nu-source",
- "nu-test-support",
- "nu-value-ext",
+ "rsh-errors",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-test-support",
+ "rsh-value-ext",
  "num-bigint 0.3.2",
  "serde 1.0.126",
  "serde_json",
 ]
 
 [[package]]
-name = "nu-pretty-hex"
+name = "rsh-pretty-hex"
 version = "3.0.0"
 dependencies = [
  "heapless",
- "nu-ansi-term",
+ "rsh-ansi-term",
  "rand 0.8.4",
 ]
 
 [[package]]
-name = "nu-protocol"
+name = "rsh-protocol"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
@@ -3643,8 +3643,8 @@ dependencies = [
  "getset",
  "indexmap",
  "log 0.4.14",
- "nu-errors",
- "nu-source",
+ "rsh-errors",
+ "rsh-source",
  "num-bigint 0.3.2",
  "num-integer",
  "num-traits 0.2.14",
@@ -3657,7 +3657,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-source"
+name = "rsh-source"
 version = "3.0.0"
 dependencies = [
  "derive-new",
@@ -3668,26 +3668,26 @@ dependencies = [
 ]
 
 [[package]]
-name = "nu-stream"
+name = "rsh-stream"
 version = "3.0.0"
 dependencies = [
  "futures 0.3.15",
- "nu-errors",
- "nu-protocol",
- "nu-source",
+ "rsh-errors",
+ "rsh-protocol",
+ "rsh-source",
 ]
 
 [[package]]
-name = "nu-table"
+name = "rsh-table"
 version = "3.0.0"
 dependencies = [
- "nu-ansi-term",
+ "rsh-ansi-term",
  "regex 1.5.4",
  "unicode-width",
 ]
 
 [[package]]
-name = "nu-test-support"
+name = "rsh-test-support"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
@@ -3697,117 +3697,117 @@ dependencies = [
  "glob",
  "hamcrest2",
  "indexmap",
- "nu-errors",
- "nu-protocol",
- "nu-source",
- "nu-value-ext",
+ "rsh-errors",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-value-ext",
  "num-bigint 0.3.2",
  "tempfile",
 ]
 
 [[package]]
-name = "nu-value-ext"
+name = "rsh-value-ext"
 version = "3.0.0"
 dependencies = [
  "indexmap",
  "itertools",
- "nu-errors",
- "nu-protocol",
- "nu-source",
+ "rsh-errors",
+ "rsh-protocol",
+ "rsh-source",
  "num-traits 0.2.14",
 ]
 
 [[package]]
-name = "nu_plugin_binaryview"
+name = "rsh_plugin_binaryview"
 version = "3.0.0"
 dependencies = [
  "crossterm 0.19.0",
  "image 0.22.5",
  "neso",
- "nu-ansi-term",
- "nu-errors",
- "nu-plugin",
- "nu-pretty-hex",
- "nu-protocol",
- "nu-source",
+ "rsh-ansi-term",
+ "rsh-errors",
+ "rsh-plugin",
+ "rsh-pretty-hex",
+ "rsh-protocol",
+ "rsh-source",
  "rawkey",
 ]
 
 [[package]]
-name = "nu_plugin_chart"
+name = "rsh_plugin_chart"
 version = "3.0.0"
 dependencies = [
  "crossterm 0.19.0",
- "nu-data",
- "nu-errors",
- "nu-plugin",
- "nu-protocol",
- "nu-source",
- "nu-value-ext",
+ "rsh-data",
+ "rsh-errors",
+ "rsh-plugin",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-value-ext",
  "tui",
 ]
 
 [[package]]
-name = "nu_plugin_fetch"
+name = "rsh_plugin_fetch"
 version = "3.0.0"
 dependencies = [
  "base64 0.13.0",
  "futures 0.3.15",
  "mime",
- "nu-errors",
- "nu-plugin",
- "nu-protocol",
- "nu-source",
+ "rsh-errors",
+ "rsh-plugin",
+ "rsh-protocol",
+ "rsh-source",
  "surf",
  "url",
 ]
 
 [[package]]
-name = "nu_plugin_from_bson"
+name = "rsh_plugin_from_bson"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
  "bson",
- "nu-errors",
- "nu-plugin",
- "nu-protocol",
- "nu-source",
- "nu-value-ext",
+ "rsh-errors",
+ "rsh-plugin",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-value-ext",
  "num-traits 0.2.14",
 ]
 
 [[package]]
-name = "nu_plugin_from_mp4"
+name = "rsh_plugin_from_mp4"
 version = "0.1.0"
 dependencies = [
  "mp4",
- "nu-errors",
- "nu-plugin",
- "nu-protocol",
- "nu-source",
+ "rsh-errors",
+ "rsh-plugin",
+ "rsh-protocol",
+ "rsh-source",
  "tempfile",
 ]
 
 [[package]]
-name = "nu_plugin_from_sqlite"
+name = "rsh_plugin_from_sqlite"
 version = "3.0.0"
 dependencies = [
  "bigdecimal",
- "nu-errors",
- "nu-plugin",
- "nu-protocol",
- "nu-source",
- "nu-value-ext",
+ "rsh-errors",
+ "rsh-plugin",
+ "rsh-protocol",
+ "rsh-source",
+ "rsh-value-ext",
  "num-traits 0.2.14",
  "rusqlite",
  "tempfile",
 ]
 
 [[package]]
-name = "nu_plugin_inc"
+name = "rsh_plugin_inc"
 version = "3.0.0"
 dependencies = [
- "nu-errors",
+ "rsh-errors",
  "nu-plugin",
  "nu-protocol",
  "nu-source",

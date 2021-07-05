@@ -24,7 +24,7 @@ where
 /// # Examples
 ///
 /// ```
-/// use nu_ansi_term::ANSIString;
+/// use rsh_ansi_term::ANSIString;
 ///
 /// let plain_string = ANSIString::from("a plain string");
 /// let clone_string = plain_string.clone();
@@ -72,15 +72,15 @@ where
 /// # Examples
 ///
 /// ```
-/// use nu_ansi_term::ANSIString;
-/// use nu_ansi_term::Color::Red;
+/// use rsh_ansi_term::ANSIString;
+/// use rsh_ansi_term::Color::Red;
 ///
 /// let red_string = Red.paint("a red string");
 /// println!("{}", red_string);
 /// ```
 ///
 /// ```
-/// use nu_ansi_term::ANSIString;
+/// use rsh_ansi_term::ANSIString;
 ///
 /// let plain_string = ANSIString::from("a plain string");
 /// assert_eq!(&*plain_string, "a plain string");
@@ -181,7 +181,7 @@ impl Color {
     /// to get blue text.
     ///
     /// ```
-    /// use nu_ansi_term::Color::Blue;
+    /// use rsh_ansi_term::Color::Blue;
     /// println!("{}", Blue.paint("da ba dee"));
     /// ```
     #[must_use]

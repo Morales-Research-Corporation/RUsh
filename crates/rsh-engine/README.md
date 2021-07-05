@@ -1,4 +1,4 @@
-# Nu-Engine
+# Rsh-Engine
 Nu-engine handles most of the core logic of nushell. For example, engine handles:
     - Passing of data between commands
     - Evaluating a commands return values

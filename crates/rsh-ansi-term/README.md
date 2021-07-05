@@ -1,10 +1,10 @@
-# nu-ansi-term
+# rsh-ansi-term
 
 > This is a copy of rust-ansi-term but with Color change to Color and light foreground colors added (90-97) as well as light background colors added (100-107).
 
 This is a library for controlling colors and formatting, such as red bold text or blue underlined text, on ANSI terminals.
 
-### [View the Rustdoc](https://docs.rs/nu_ansi_term/)
+### [View the Rustdoc](https://docs.rs/rsh_ansi_term/)
 
 # Installation
 
@@ -12,7 +12,7 @@ This crate works with [Cargo](http://crates.io). Add the following to your `Carg
 
 ```toml
 [dependencies]
-nu_ansi_term = "0.13"
+nu_ansi_term = "3.0.0"
 ```
 
 ## Basic usage

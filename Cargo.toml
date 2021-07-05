@@ -1,16 +1,16 @@
 [package]
-authors = ["The Nu Project Contributors"]
-default-run = "nu"
-description = "A new type of shell"
-documentation = "https://www.nushell.sh/book/"
-edition = "2018"
+authors = ["Morales Research Corporation"]
+default-run = "sh"
+description = "The rewritten Research Unix Shell"
+documentation = "https://github.com/Morales-Research-Corporation/RUsh"
+edition = "2021"
 exclude = ["images"]
-homepage = "https://www.nushell.sh"
-license = "MIT"
-name = "nu"
+homepage = "https://github.com/Morales-Research-Corporation/RUsh"
+license = "FRL"
+name = "rsh"
 readme = "README.md"
-repository = "https://github.com/nushell/nushell"
-version = "0.33.1"
+repository = "https://github.com/Morales-Research-Corporation/RUsh"
+version = "3.0.0"
 
 [workspace]
 members = ["crates/*/"]

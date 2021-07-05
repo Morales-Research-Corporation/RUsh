@@ -1,26 +1,26 @@
 [package]
-authors = ["The Nu Project Contributors"]
-description = "CLI for nushell"
-edition = "2018"
-license = "MIT"
-name = "nu-cli"
-version = "0.33.1"
+authors = ["Morales Research Corporation"]
+description = "CLI for rsh"
+edition = "2021"
+license = "BSD-3"
+name = "rsh-cli"
+version = "3.0.0"
 build = "build.rs"
 
 [lib]
 doctest = false
 
 [dependencies]
-nu-completion = { version="0.33.1", path="../nu-completion" }
-nu-command = { version="0.33.1", path="../nu-command" }
-nu-data = { version="0.33.1", path="../nu-data" }
-nu-engine = { version="0.33.1", path="../nu-engine" }
-nu-errors = { version="0.33.1", path="../nu-errors" }
-nu-parser = { version="0.33.1", path="../nu-parser" }
-nu-protocol = { version="0.33.1", path="../nu-protocol" }
-nu-source = { version="0.33.1", path="../nu-source" }
-nu-stream = { version="0.33.1", path="../nu-stream" }
-nu-ansi-term = { version="0.33.1", path="../nu-ansi-term" }
+rsh-completion = { version="3.0.0", path="../nu-completion" }
+rsh-command = { version="3.0.0", path="../nu-command" }
+rsh-data = { version="3.0.0", path="../nu-data" }
+rsh-engine = { version="3.0.0", path="../nu-engine" }
+rsh-errors = { version="3.0.0", path="../nu-errors" }
+rsh-parser = { version="3.0.0", path="../nu-parser" }
+rsh-protocol = { version="3.0.0", path="../nu-protocol" }
+rsh-source = { version="3.0.0", path="../nu-source" }
+rsh-stream = { version="3.0.0", path="../nu-stream" }
+rsh-ansi-term = { version="3.0.0", path="../nu-ansi-term" }
 
 indexmap ="1.6.1"
 log = "0.4.14"
@@ -37,5 +37,5 @@ shadow-rs = "0.5"
 
 [features]
 default = ["shadow-rs"]
-rustyline-support = ["rustyline", "nu-engine/rustyline-support"]
+rustyline-support = ["rustyline", "rsh-engine/rustyline-support"]
 stable = []

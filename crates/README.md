@@ -1,6 +1,6 @@
-# Nushell core libraries and plugins
+# Research Unix shell core libraries and plugins
 
-These sub-crates form both the foundation for Nu and a set of plugins which extend Nu with additional functionality.
+These sub-crates form both the foundation for Rsh and a set of plugins which extend Nu with additional functionality.
 
 Foundational libraries are split into two kinds of crates:
 

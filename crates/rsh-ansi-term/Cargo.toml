@@ -1,0 +1,35 @@
+[package]
+authors = ["Morales Research Corporation"]
+description = "Library for ANSI terminal colors and styles (bold, underline)"
+edition = "2021"
+license = "BSD-3"
+name = "rsh-ansi-term"
+version = "3.0.0"
+
+[lib]
+doctest = false
+# name = "rsh-ansi-term"
+
+[features]
+derive_serde_style = ["serde"]
+
+[dependencies]
+overload = "0.1.1"
+serde = { version="1.0.90", features=["derive"], optional=true }
+itertools = "0.10.0"
+
+# [dependencies.serde]
+# version = "1.0.90"
+# features = ["derive"]
+# optional = true
+
+[target.'cfg(target_os="windows")'.dependencies.winapi]
+version = "0.3.4"
+features = ["consoleapi", "errhandlingapi", "fileapi", "handleapi", "processenv"]
+
+[dev-dependencies]
+doc-comment = "0.3"
+regex = "1.1.9"
+
+[dev-dependencies.serde_json]
+version = "1.0.39"
